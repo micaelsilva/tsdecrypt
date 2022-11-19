@@ -19,10 +19,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <openssl/des.h>
-
 #include "libfuncs/libfuncs.h"
 
+#include "md5crypt.h"
 #include "data.h"
 #include "util.h"
 #include "camd.h"
@@ -292,7 +291,8 @@ static int newcamd_login(struct camd *c) {
 		return 0;
 	}
 
-	char *crPasswd = crypt(c->pass, "$1$abcdefgh$");
+	char *crPasswd = md5crypt(c->pass, "1", "abcdefgh");
+	//char *crPasswd = crypt(c->pass, "$1$abcdefgh$");
 	c->newcamd.crypt_passwd = crPasswd;
 	if (!crPasswd) {
 		ts_LOGf("ERR | [%s] Can't crypt password.\n", c->ops.ident);
