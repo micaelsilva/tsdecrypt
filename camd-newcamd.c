@@ -19,6 +19,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <openssl/des.h>
+
 #include "libfuncs/libfuncs.h"
 
 #include "data.h"
