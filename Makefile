@@ -25,8 +25,8 @@ uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 LDFLAGS ?= -Wl,--gc-sections
 
 ifeq ($(uname_S),Darwin)
-LDFLAGS :=
-CC := cc -I/opt/local/include
+LDFLAGS := -L/usr/local/Cellar/openssl@1.1/1.1.1k/lib
+CC := cc -I/usr/local/Cellar/openssl@1.1/1.1.1k/include
 endif
 
 DEFS = -DVERSION=\"$(VERSION)\" -DGIT_VER=\"$(GIT_VER)\"
